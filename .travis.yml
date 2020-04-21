@@ -1,0 +1,48 @@
+sudo: required
+dist: trusty
+
+#install google chrome, using addons
+addons:
+  sonarcloud:
+    organization: "metamagic" # the key of the org you chose at step #3
+    token:
+      secure: "obfyV9Fk0+wXxOeCRYmCezRtk6qoK9+6CeiCLsQ+7eXZunThM33fLAu3eDzOczwYdwCI4qWCMp7swy2UBYTJH5VyjTIuHiCz73JQh7k+QIQdtExnX8nmdfYMG02WoNXMFANIlYRMtibl9GiIJV5Md3TwRpveLzFzBDGy/R4MZf90epC/WjcwTzaS4IFsHHE5NP9xdnWqA94PGUQpvtOmJVvVP5p56wcHs6b7lm4rAIiZ4fSFSXwQSosDa+3EnywoGapCNPhBe15GPY6wy+I0N9vbh5oconZMPHSd499jyF1D5Gdn73sw4bWaEhmHe0rajM/USld/0Mo0ReF/GIA5xhLHtweriFaxjo8Vdlki6beCj6OPMEuaSiHQUtal+WKlLfXFT8rIVFokeoD0EelLCImVnVNK6ktqSJE9fybD1sBXH66CYLvjF5A1oyiSQQGhZpj3zqvian+tpCcXiwIjyb+MWAkPZH0YJpTSMGQq8R7EfF7gZZAjbe8v712I92OLkMHeCu/qVVr5cH1teeR5dMSagvPQNhqd6GJudakfqjYvqLKI1PDypNzNmBaILLpKw7V47Ri0FGSbT91JRHFfiQN6ad6YHtHrivgfO/2L9JoZv6Y8kDb9qP7GPvCFdbrITWoeWcA9c28ndMPmAxMElQbp+3vQyvn2L64hx3HYLDQ="
+# encrypted value of your token   
+ 
+language: node_js
+node_js:
+  - "8"
+
+before_script:
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - npm install --global gulp --save
+  - gem install sass
+  - git fetch --unshallow
+  - gulp -v
+
+            
+script: 
+  - gulp test --max_old_space_size=8192
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then sonar-scanner ; fi
+  - cd src/styles/ && sh sasstocss.sh
+  - cd ../../ && pwd && gulp build --max_old_space_size=8192
+  - cd dist && npm pack
+  - mv amexio-ng-extensions-*.tgz amexio-ng-extensions.tgz
+  
+after_success: 
+  - cd ../
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git clone https://github.com/meta-magic/amexio-ios.git -b v5.21 ; fi 
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then cd amexio-ios ; fi 
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then cp -rf ../dist/amexio-ng-extensions.tgz . ; fi 
+ # - cp -rf ../src/styles/css/*  themes/
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git add amexio-ng-extensions.tgz ; fi 
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git commit -m "date" ; fi 
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git push "https://deepali-arvind:${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git" HEAD:v5.21 ; fi 
+  - gulp coveralls 
+  - codecov
+
+cache:
+  yarn: true
+  

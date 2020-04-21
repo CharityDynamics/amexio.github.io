@@ -1,0 +1,14 @@
+<div class="minimize-btn-css" [class.minimize-window-bg]="minimizeButton"
+    [ngStyle]="{ 'padding': minimizeButton ? '10px  0px 10px 0px': '0px'}">
+
+    <ng-container *ngIf="minimizeButton">
+        <span *ngFor="let data of localData">
+<!-- {{data.amexioHeader.first.content.nativeElement.innerText}} -->
+             <amexio-button [icon]="data.amexioHeader.first.minimizeIcon" [label]="data.amexioHeader.first.content.nativeElement.innerText"
+                    [type]="'theme-color'" [tooltip]="data.textName" (onClick)="minimizeBtnClick(data)">
+                </amexio-button>
+        </span>
+    </ng-container>
+
+
+</div>

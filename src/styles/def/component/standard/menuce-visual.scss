@@ -1,0 +1,55 @@
+
+
+
+.bmenu1 a {
+    color: transparent;
+ 
+    text-shadow: 0px 0px 5px black;
+   
+}
+
+
+.bmenu1 a:hover {
+    text-shadow: 0px 0px 1px $menuCeBGColor;
+}
+
+
+
+.bmenu2 a{
+    
+    color: transparent;
+   
+    text-shadow: 0px 0px 6px black;
+   
+}
+
+.bmenu2 a:hover{
+    text-shadow: 0px 0px 1px $menuCeBGColor;
+}
+
+
+.bmenu3 a{
+    
+    text-shadow: 0px 0px 4px black;
+    
+}
+
+.bmenu3 a:hover{
+    color: $menuCeHoverFontColor;
+    text-shadow: 0px 0px 1px black;
+}
+
+.bmenu4 a{
+    color: transparent;
+    text-shadow: 0px 0px 3px black;
+} 
+
+.bmenu4 a:hover{
+    color: $menuCeHoverFontColor;
+    background: $menuCeHoverBGColor;
+}
+
+.bmenu4 a:hover{
+    text-shadow: none;
+  
+}

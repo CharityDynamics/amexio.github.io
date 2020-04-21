@@ -1,0 +1,22 @@
+.amexio-root-window-ce {
+    background: rgba(128, 127, 127, 0.6);
+    
+}
+
+
+
+.card-container-body::-webkit-scrollbar-track
+{
+background-color: $windowceScrollColor;
+}
+
+.card-container-body::-webkit-scrollbar
+{
+//width: 6px;
+background-color: $windowceScrollColor;
+}
+
+.card-container-body::-webkit-scrollbar-thumb
+{
+background-color: $windowceScrollThumbColor;
+}

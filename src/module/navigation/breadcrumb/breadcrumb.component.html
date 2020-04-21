@@ -1,0 +1,41 @@
+<ng-container *ngIf="data">
+
+    <div *ngFor="let nodeObject of data">
+
+        <div   class="breadcrum-rightshift-css {{roundedgeclass}}">
+            <div class="breadcrumb-group" tabindex="1" aria-label="breadcrum">
+                <label tabindex="1" (click)="onButtonClick(nodeObject)" (keyup.enter)="onButtonClick(nodeObject)" class="label-icon-css">
+                    <ng-container *ngIf="nodeObject && nodeObject.icon">
+                        <span [ngClass]="nodeObject.icon"></span>
+                    </ng-container>&nbsp;
+                    <span>{{nodeObject[displaykey]}}&nbsp;&nbsp;</span>
+                </label>
+                <ng-container *ngIf="nodeObject[childarraykey]">
+                    <amexio-c-icon tabindex="1" aria-label="button clickable" (click)="onArrowClick(nodeObject)"
+                        (keyup.enter)="onArrowClick(nodeObject)" class="arrow-group-css" [key]="arrowKey"></amexio-c-icon>
+                </ng-container>
+                <div class="context-menu-list1" [@breadCrumbStateState]="nodeObject.expand ? 'visible':'hidden'">
+                    <ng-container *ngFor="let node of nodeObject[childarraykey] let rowindex = index">
+                        <div tabindex="{{node.tabindex}}" id="{{node.id}}" class="context-menu-list-items1" [ngStyle]="{'cursor': node.disabled ? 'not-allowed':'pointer'}"
+                            (click)="getSelectedItem({data:node,parentRef:nodeObject})" (keyup.arrowdown)="onArrowDown(nodeObject,node,rowindex)"
+                            (keyup.arrowup)="onArrowUp(nodeObject,node,rowindex)" (keyup.enter)="getSelectedItem({data:node,parentRef:nodeObject})">
+                            <div class="dropdown-icon-css">
+                                <ng-container *ngIf="node.icon">
+                                    <amexio-c-icon [ngClass]="node.icon"></amexio-c-icon>
+                                </ng-container>&nbsp;
+                            </div>
+                            <div class="dropdown-label-css">
+                                <span>{{node[displaykey]}}&nbsp;</span>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <ng-container *ngIf="nodeObject.show">
+                <amexio-breadcrumb [data]="childItem" [display-key]="displaykey" [childarray-key]="childarraykey"
+                    (onListItemClick)="getEventEmitClick($event)" (onClick)="onButtonClick($event)">
+                </amexio-breadcrumb>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>

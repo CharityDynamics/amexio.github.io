@@ -1,0 +1,17 @@
+<div class="{{'homepage-'+type}}" (window:resize)="resize($event)">
+    <div class="homepage-northpanel-flex">
+        <ng-content select="amexio-homepage-northpanel">
+        </ng-content>
+    </div>
+    <div [ngStyle]="{'display': !isPhone ? 'flex':'','flex-direction': isDisableWestPanel ? 'row' : 'column'}">
+        <div [ngStyle]="{'flex':isPhone ? '0 0 0%':westPanelWidth}">
+            <ng-content *ngIf="isDisableWestPanel" select="amexio-homepage-westpanel">
+            </ng-content>
+        </div>
+        <div [ngClass]="{'homepage-centerpanel-flex':!isPhone || (isDisableWestPanel && !isPhone), 'homepage-centerpanel-flex-fullview':(!isDisableWestPanel && !isPhone) }"
+            [style.padding-top.px]="northPanelHeight">
+            <ng-content select="amexio-homepage-centerpanel">
+            </ng-content>
+        </div>
+    </div>
+</div>

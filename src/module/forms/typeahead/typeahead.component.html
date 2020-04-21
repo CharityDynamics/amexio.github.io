@@ -1,0 +1,40 @@
+
+
+<div class="inputgroup form-group" (keyup.esc) ="closeOnEScapeKey($event)">
+
+  <label  id="fieldlabel" for="{{componentId}}"  *ngIf="haslabel" [style.font-style]="fontstyle" [style.font-family]="fontfamily" [style.font-size]="fontsize">
+    {{fieldlabel}}
+  </label>
+
+  <input type="hidden"  [(ngModel)]="value" [name]="name" #model="ngModel" required (ngModelChange)="onChange($event)">
+  
+  <div class="input-container" >
+          <input 
+                  id="{{componentId}}"
+                  aria-autocomplete="list"	
+                  role="combobox"
+                  [(ngModel)]="value"
+                  [attr.aria-expanded]="ariaListExpand"
+                  type="text" class="input-control"
+                  [ngClass]="{'input-control-error': ((model.dirty || model.touched || (value && value.length>0)) && !model.valid),
+                  'input-disabled' : disabled}"
+                  [required]="!allowblank" 
+                  [value]="displayValue"
+                  [attr.placeholder]="placeholder"
+                  [attr.disabled] = "disabled ? true: null"
+                  (focus)="focus($event)"
+                  (input)="input($event)"
+                  (keyup)="keyup($event)"
+                  (blur)="blur($event)"
+                  (keyup.end)="focustoLast()"
+                  />
+          <em *ngIf="(iconfeedback && (model.dirty || model.touched) && model.valid)" class="fa fa-check"></em>
+          <em *ngIf="(iconfeedback && (model.dirty || model.touched) && !model.valid)" class="fa fa-times icon-error"></em>
+  </div>
+  
+  <dropdown-list-item [@changeState]="dropdownstyle.visibility" class="dropdown" [ngStyle]="dropdownstyle"  
+                      [data]="viewdata" [display-field]="displayfield" [value-field]="valuefield" 
+                      [highlight-row]="rowindex" [display-value]="displayValue" 
+                      (itemclick)="onDropDownListItemClick($event)">
+  </dropdown-list-item>
+</div>

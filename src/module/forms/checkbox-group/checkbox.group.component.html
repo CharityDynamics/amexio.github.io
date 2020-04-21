@@ -1,0 +1,19 @@
+<div role="group"
+     attr.aria-labelledby="{{componentId}}"
+     [attr.aria-required]="required" 
+     tabindex="0"
+     class="inputgroup form-group">
+    <div *ngIf="fieldlabel">
+        <legend id="{{componentId}}">{{fieldlabel}}</legend>
+    </div>  
+
+    <div *ngIf="horizontal" style="display: inherit; flex-direction :row;">
+        <checkbox *ngFor="let data of viewdata | async" [checked]="data.checked" [value]="data" [disabled]="data?.disabled || disabled" [label]="data[displayfield]">
+        </checkbox>    
+    </div>
+
+    <div *ngIf="!horizontal" style="display: inline-flex;flex-direction :column;">
+        <checkbox *ngFor="let data of viewdata | async" [checked]="data.checked" [value]="data" [disabled]="data?.disabled || disabled" [label]="data[displayfield]">
+        </checkbox>
+    </div>
+</div>

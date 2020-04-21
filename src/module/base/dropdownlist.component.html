@@ -1,0 +1,20 @@
+    <ul role="list"  class="dropdown-list">
+        <li role="listitem" [ngClass]="{'list-items-selected': (i === highlightrow)}" 
+             class="list-items" 
+             [attr.valuefield]="item[valuefield]" 
+             [attr.displayfield]="item[displayfield]" 
+             *ngFor="let item of viewdata | async | filterpipe : displayfield : displayValue ; index as i"  
+            (mousedown)="onDropDownListClick(item)"
+            id="{{item.index}}">
+            <ng-container *ngIf="!template">
+                <div><amexio-display-field [data]="item" [data-index]="displayfield"></amexio-display-field></div>    
+            </ng-container>
+
+            <ng-container *ngIf="template">
+                <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ text : item }">
+                </ng-template>
+            </ng-container>
+    
+        </li>
+    </ul>
+

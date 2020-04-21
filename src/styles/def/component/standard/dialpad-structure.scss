@@ -1,0 +1,21 @@
+.btnspan {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.clear-btn button::before{
+    margin-left: -3px;
+}
+
+.btn {
+   margin: 3px;
+}
+
+.pointer {
+   cursor: pointer;
+}
+
+.rounded {
+    border-radius: 50%;
+}

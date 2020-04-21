@@ -1,0 +1,18 @@
+
+.browser-iframe{
+  border: 1px solid $browserPanelBorderColor;
+}
+
+.btn-green {
+  background: $browerZoomBGColor;
+  border: 1px solid $browerZoomBorder;
+}
+.btn-red {
+  background: $browerCloseBGColor;
+  border: 1px solid $browerCloseBorder;
+}
+
+.btn-yellow {
+  background: $browerMinimizeBGColor;
+  border: 1px solid $browerMinimizeBorder;
+}

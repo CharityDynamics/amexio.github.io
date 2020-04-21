@@ -1,0 +1,58 @@
+.floatarrow:after{
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 30px;
+    border-style: solid;
+    border-width: 0 15px 15px;
+    // border-color: $floatingpanelItemBGColor transparent;
+  }
+
+  .floatingpanel-header {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.floatingpanel-header .floatingpanel-header-div {
+    height: auto;
+}
+
+.floatingpanel-header>* {
+    padding-right: 10px;
+    margin-top: 0px;
+    
+}
+
+.floatingpanel-header-icon-div{
+    position:absolute; 
+    right:0%;
+     padding:5px 10px;
+}
+
+.floatingPanelIndex  amexio-floating-panel div {
+    z-index: 2 !important;
+}
+
+.floatingPanelIndex {
+    margin-top: 15px;
+}
+
+
+.leftPositionPanel {
+    display: block;
+    position: absolute;
+    left: 50px;
+    right: 0px;
+    margin-top: 70px;
+  }
+  
+  .rightPositionPanel{
+    display: block;
+    position: absolute;
+    right: 50px;
+    margin-top: 70px;
+  }

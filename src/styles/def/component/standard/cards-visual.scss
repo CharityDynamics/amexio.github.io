@@ -1,0 +1,70 @@
+
+.card-container {
+  background-color: $cardBGColor;
+  color: $cardColor;
+
+}
+
+.card-header{
+  background: $cardHeaderBGColor;
+  color: $cardHeaderColor;
+}
+
+.card-header .toolbar{
+  background-color: unset;
+  box-shadow : unset;
+  padding: 0px;
+}
+
+.cardbody::-webkit-scrollbar-track
+{
+  background-color:$cardBodyScrollBGColor;
+}
+
+.cardbody::-webkit-scrollbar
+{
+  background-color: $cardBodyScrollBGColor;
+}
+
+.cardbody::-webkit-scrollbar-thumb
+{
+  background-color: $cardBodyScrollThumbColor;
+}
+
+.card-footer{
+  background-color: $cardFooterBGColor;
+  color: $cardFooterColor;
+}
+.card-container-pol-styl{
+  transform: rotate(2deg);
+  margin: 2em;
+}
+.card-container-pol-styl2{
+  transform: rotate(-2deg);
+  margin:2em
+}
+.card-container-pol-styl3{
+  transform: rotate(4deg);
+  margin: 2em;
+}
+.card-container-pol-styl4{
+  transform: rotate(-4deg);
+  margin: 2em;
+}
+
+.card-container-pol-styl:hover{
+  transform: scale(1.2);
+  z-index: 10;
+}
+.card-container-pol-styl2:hover{
+  transform: scale(1.2);
+  z-index: 10;
+}
+.card-container-pol-styl3:hover{
+  transform: scale(1.2);
+  z-index: 10;
+}
+.card-container-pol-styl4:hover{
+  transform: scale(1.2);
+  z-index: 10;
+}

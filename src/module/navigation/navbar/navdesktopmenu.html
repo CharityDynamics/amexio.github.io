@@ -1,0 +1,32 @@
+<div #divRef class="scroll-class" (scroll)="onScroll()" [ngClass]="{'navbar-scroll': (nodes &&(nodes.length > 6))}" [ngStyle]="{'height': (nodes &&(nodes.length > 6)) ?'300px':'auto'}">
+<div #menus style="display: flex; flex-direction: column;" *ngFor="let node of nodes">
+    <div *ngIf="node.separatorHeader" class="nav-menu-separator">
+        <!-- Add only border separator -->
+    </div>
+    <div *ngIf="node.separatorHeader" class="nav-menu-header">
+        {{node.separatorHeader}}
+    </div>
+    <div class="nav-desktop-link" (click)="onClick($event,node)" (mouseover)="onMouseOver($event, node)"   (mouseleave)="onMouseLeave($event,node)"
+        [ngClass]="{'nav-menu-separator': (node.separator && !node.separatorHeader)}">
+
+        <span class="flex-inline" [ngStyle]="{'flex-direction': (position === 'left') ?'row':'row-reverse'}">
+            <em *ngIf="node.icon" [ngClass]="node.icon"></em>
+            <span style="flex-grow: 1; margin: 0px 5px; ">{{node[displaykey]}}</span>
+            <i *ngIf="node.submenus" class="fa " aria-hidden="true" [ngClass]="{'fa-angle-right': (position === 'left'), 
+                                             'fa-angle-left':(position === 'right')}"></i>
+        </span>
+
+        
+
+        <amexio-nav-desktop  *ngIf="node.showInnerMenus" (onNavItemClick)="onInnerClick($event)"
+         class=" amexio-nav-submenus amexio-nav-desktop-submenus"
+          [nodes]="node.submenus" 
+          [display-key]="displaykey"
+          [ngStyle]="{'left': (position === 'left') ? '100%':null,
+                                                         'right': (position === 'right') ? '100%':null,'margin-top': ((nodes &&(nodes.length > 6)) &&  node.submenus) ? marginTop :'-50px'}">
+        </amexio-nav-desktop>
+
+    </div>
+
+</div>
+</div>

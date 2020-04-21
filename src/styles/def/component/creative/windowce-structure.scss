@@ -1,0 +1,101 @@
+.amexio-root-window-ce {
+    background: rgba(128, 127, 127, 0.6);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 700;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    top: 0;
+    left: 0;
+}
+.amexio-root-window-content-ce{
+    position: relative;
+}
+.amexio-root-window-content-ce {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 96%;
+    padding: 5px;
+}
+
+.amexio-root-window-content-ce>* {
+     padding: 0px;
+}
+
+
+.minimize-btn-css {
+    display:block;
+    position:fixed;
+    z-index: 999; 
+    bottom: 0px;
+    width: 100%;
+}
+
+//--------------------------- amexio-root-window-ce-windowModel ------------------------------
+
+.amexio-root-window-ce-windowModel{ 
+    
+    width: 100%;
+    position: fixed;
+    z-index: 700;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+.amexio-root-window-content-ce-windowModel {
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.4) !important; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 96%;
+    width: 400px;
+    top: 0px;
+    left: 0px;
+    justify-content: flex-start;
+    transform: none;
+    opacity: 1;
+    padding: 5px;
+    pointer-events: all;
+}
+
+.amexio-root-window-content-ce-windowModel{
+    position: relative;
+}
+
+.amexio-root-window-content-ce-windowModel>* {
+    padding: 0px;
+}
+
+.card-container-body::-webkit-scrollbar-track {
+    //-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    //background-color: $sidenavScrollColor;
+    }
+    .card-container-body::-webkit-scrollbar {
+    width: 6px;
+    //background-color: $sidenavScrollColor;
+    }
+    .card-container-body::-webkit-scrollbar-thumb {
+    //background-color: $sidenavScrollThumbColor;
+    }
+
+
+
+
+
+
+/* .amexio-root-window-content-ce .window-middle::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.amexio-root-window-content-ce .window-middle::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+} */
+
+

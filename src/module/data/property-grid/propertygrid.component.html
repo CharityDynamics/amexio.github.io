@@ -1,0 +1,28 @@
+<ng-container *ngIf="data && data.length > 0">
+  <div style="overflow-x: auto" [style.height]="height" >
+  <table aria-describedby="propertyGrid" [ngClass]="{'borderStyle': hasBorder}" 
+  style="width: 100%">
+      <ng-container *ngIf="data && data.length == 0">
+      <tr>
+          <th scope="col"></th>
+          <th scope="col"></th>
+      </tr>      
+      </ng-container>
+    <tr *ngFor="let item of data">
+      <td class="field-name-align" [ngClass]="{'borderStyle': hasBorder}">
+        <span *ngIf="item.fieldIcon" style="padding-right: 5px">
+          <amexio-c-icon class="fa + {{item.fieldIcon}}"></amexio-c-icon>
+        </span>
+        <span *ngIf="!item.onlyIcon"
+          [ngStyle]="{'font-weight': enableKeyBold ? 'bold': 'normal'}">{{item.fieldName}}</span>
+        <span *ngIf="hasColon"> :</span>
+      </td>
+      <td class="field-name-align"
+        [ngClass]="{'borderStyle': hasBorder, 'isclickenabled':(item.link && item.link.length>0)}"
+        (click)="onClick(item)">
+        {{item.fieldValue}}
+      </td>
+    </tr>
+  </table>
+</div>
+</ng-container>

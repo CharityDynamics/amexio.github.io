@@ -1,0 +1,17 @@
+.floatinggroup{
+	position:fixed;
+    z-index: 3;
+    outline: none;
+
+}
+
+.floatinggroup .floatinggroupitems{
+	list-style:none;
+    margin-bottom:10px;
+    outline: none;
+}
+
+.floatingbutton-circle{
+    text-align: center;
+    cursor: pointer;
+}

@@ -1,0 +1,27 @@
+<div #navmenu class="nav-dropdown" (mouseover)="onMouseOver($event)" (mouseleave)="onMouseLeave($event)" >
+  <a class="nav-dropbtn" style="white-space: nowrap" [ngStyle]="{'color':color}" 
+    (click)="onHeaderClick($event)">
+    <span [style.padding-left.px]="icon ? 0 : 10">
+      <em *ngIf="icon" [ngClass]="icon"></em>
+    </span>
+    <span>{{title}}</span>
+    <span>
+      <em *ngIf="!mobilemode" class="dropdownicon fa fa-angle-down"></em>
+      <em *ngIf="mobilemode && showMenus" class="dropdownicon fa fa-angle-up"></em>
+      <em *ngIf="mobilemode && !showMenus" class="dropdownicon fa fa-angle-down"></em>
+    </span>
+  </a>
+  <div *ngIf="(type==='menucontainer' && showMenus) "
+    class="dropdownData">
+    <ng-content></ng-content>
+  </div>
+  <amexio-nav-desktop  *ngIf=" (type !='menucontainer') && showMenus && !mobilemode"
+  [display-key]="displaykey"
+   (onNavItemClick)="navItemClick($event)"  class="amexio-nav-desktop amexio-nav-submenus amexio-nav-desktop-submenus"  [nodes]="data" [ngStyle]="{'right': (position === 'right') ? '10px':null}"></amexio-nav-desktop>
+
+  <amexio-nav-mobile  *ngIf=" (type !='menucontainer') && showMenus && mobilemode" 
+  
+  [display-key]="displaykey"
+  (onNavItemClick)="navItemClick($event)"   class="amexio-nav-mobile amexio-nav-submenus amexio-nav-mobile-submenus"  [nodes]="data"></amexio-nav-mobile>
+  
+</div>

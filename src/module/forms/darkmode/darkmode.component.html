@@ -1,0 +1,12 @@
+<ng-container *ngIf="mode === 'day-night'">
+        <amexio-toggle
+        [field-label]="fieldLabel" [size]="size" [type]="type" [shape]="shape" (onChange)="onToggleClick($event)">
+        </amexio-toggle>
+        </ng-container>
+        
+        <ng-container *ngIf="mode !== 'day-night'">
+        <amexio-slider (ngModelChange) ="onChange($event)" [shape]="shape" [darkmode-slider]="true" min-value="0" [max-value]="maxValue" [step-value]="1" [ngModel]="stepVal">
+        </amexio-slider>
+        </ng-container>
+        
+        

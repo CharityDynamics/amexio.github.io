@@ -1,0 +1,20 @@
+
+<ng-container *ngIf="show">
+  <div #overlay class="overlayContainer {{arrowClass}}"
+       [ngStyle]="renderPositionClass"
+       [@animation]="{value: 'show'}"
+       (@animation.start)="onAnimationStart($event)">
+    <i *ngIf="closable"
+       class="fa fa-times-circle-o iconClass " [ngStyle]="iconPosition"
+       aria-hidden="true" (click)="onClose()"></i>
+    <div class="containerClass" [style.height]="height">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</ng-container>
+
+
+
+
+
+  

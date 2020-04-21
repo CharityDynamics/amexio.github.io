@@ -1,0 +1,15 @@
+
+
+.customRangePanel {
+   
+    background-color: white; 
+ }
+
+ .customRangePanel:hover {
+    color: black;
+    background: $multiRangedatetimeHoverBG;
+ }
+ .customRange {
+    
+border-bottom: 3px solid $multirangedatetimepickertopbarBGColor;
+ }

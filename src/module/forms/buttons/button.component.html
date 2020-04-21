@@ -1,0 +1,57 @@
+<button #button class="button {{roundedgeclass}}" role="button" tabindex="1" [attr.aria-pressed]="ispressed"
+  [ngStyle]="{'cursor': disabled ? 'not-allowed':'pointer','background-color':bgcolor,'color':color,'box-shadow':bgBorderColor}"
+  ng-disabled="disabled ? true: null" [attr.title]="tooltip" [ngClass]="{'button-default': size=='default'
+        || size ==null,
+        'button-small': size=='small',
+        'button-large' : size=='large',
+        'button-block': block==true ,
+        'button-primary' : (type == 'primary' || type == 'theme-color') && disabled == false,
+        'button-secondary' : type == 'secondary' || type == 'theme-backgroundcolor' && disabled == false,
+        'button-success' : type == 'success' || type == 'green' && disabled == false,
+        'button-danger' : type=='danger' || type == 'red' && disabled == false,
+        'button-warning' : type=='warning' || type == 'yellow' && disabled == false,
+        'button-transparent' : type=='transparent' && disabled == false,
+        'disabled' : (type =='transparent' && disabled) || (type == 'secondary' || type == 'theme-backgroundcolor') && disabled,
+        'button-primary-disabled' : (type == 'primary' || type == 'theme-color') && disabled,
+        'button-success-disabled' : (type == 'success' || type == 'green') && disabled,
+        'button-danger-disabled' : (type == 'danger' || type == 'red') && disabled,
+        'button-warning-disabled' : (type == 'warning' || type == 'yellow') && disabled}"
+  (click)="buttonClick($event)">
+
+
+  <ng-container *ngIf="icon">
+    <span style="padding-right: 5px;" (click)="buttonClick($event)">
+      <amexio-c-icon [customclass]="icon">
+      </amexio-c-icon>
+    </span>
+  </ng-container>
+  <span class="button-text">
+    <ng-container *ngIf="icon && label">
+    <span style="padding-right: 5px;" >
+      {{label}}
+    </span>
+  </ng-container>
+    <span style="padding-right: 5px;" *ngIf="loading">
+      <amexio-c-icon key="button-loading-icon" [label]="label"></amexio-c-icon>
+    </span>
+    <ng-container *ngIf="!icon">{{label}}</ng-container>
+
+    <ng-container *ngIf="badge">
+      <span [ngClass]="badgeCssClass">{{badge}}</span>
+    </ng-container>
+  </span>
+  <ng-container *ngIf="rightIcon">
+    <span style="padding-left: 5px;" *ngIf="rightIcon" (click)="buttonClick($event)">
+      <amexio-c-icon [customclass]="rightIcon">
+      </amexio-c-icon>
+    </span>
+  </ng-container>
+  <ng-container *ngIf="closableIcon">
+    <span style="padding-left: 5px;" *ngIf="closableIcon" (click)="IconClick($event)">
+      <amexio-c-icon [customclass]="'fa fa-close'">
+      </amexio-c-icon>
+    </span>
+  </ng-container>
+
+
+</button>

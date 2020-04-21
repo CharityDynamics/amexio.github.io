@@ -1,0 +1,55 @@
+<div class="notification-content {{roundedgeclass}}" [ngClass]="positionclass">
+    <ng-container *ngIf="!notificationTemplate">
+        <div id="{{componentID}}" role="alert" [attr.aria-label]="'notification is'+ messageData" class="notification"
+            *ngFor="let msg of messageData" [ngClass]="amexioColor" [style.color]="foregroundColor"
+            [style.background-color]="backgroundColor">
+            <span class="float-right" (click)="closeNotification(msg)">
+                <ng-container *ngIf="closable">
+                    <amexio-c-icon style="cursor: pointer" key="notify_close"></amexio-c-icon>
+                </ng-container>
+            </span>
+
+            <table aria-describedby="table">
+                <ng-container *ngIf="icon">
+                    <th scope="col">
+                        <amexio-c-icon style=" padding-right: 18px;" [ngClass]="icon">
+                        </amexio-c-icon>
+                    </th>
+                </ng-container>
+
+                <th scope="col" style=" text-align: left;">
+
+                    <span>{{msg}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                </th>
+
+            </table>
+
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="notificationTemplate">
+        <div id="{{componentID}}" role="alert" [attr.aria-label]="'notification is'+ messageData" class="notification"
+            [ngClass]="amexioColor" *ngFor="let msg of messageData" [style.color]="foregroundColor"
+            [style.background-color]="backgroundColor">
+
+            <span class="float-right" (click)="closeNotification(msg)">
+                <ng-container *ngIf="closable">
+                    <amexio-c-icon style="cursor: pointer" key="notify_close"></amexio-c-icon>
+                </ng-container>
+            </span>
+
+            <table aria-describedby="table">
+                <ng-container *ngIf="icon">
+                    <th scope="col">
+                        <amexio-c-icon style=" padding-right: 18px;" [ngClass]="icon">
+                        </amexio-c-icon>
+                    </th>
+                </ng-container>
+                <th scope="col" style=" text-align: left;">
+                    <ng-template [ngTemplateOutlet]="notificationTemplate" [ngTemplateOutletContext]="{data:msg}">
+                    </ng-template>
+                </th>
+            </table>
+        </div>
+    </ng-container>
+</div>

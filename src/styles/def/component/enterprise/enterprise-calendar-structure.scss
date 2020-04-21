@@ -1,0 +1,19 @@
+.fpClass amexio-floating-panel div {
+    // bottom: 0px;
+    z-index: 300 !important;
+    }
+    
+    .fpRightClass amexio-floating-panel div {
+      // bottom: 0px;
+      right: 0px;
+      z-index: 300 !important;
+      }
+
+      .fpClass amexio-floating-panel div .card-container-body {
+        height: 100% !important
+      }
+      
+      .fpRightClass amexio-floating-panel div .card-container-body {
+        height: 100% !important
+      
+        }

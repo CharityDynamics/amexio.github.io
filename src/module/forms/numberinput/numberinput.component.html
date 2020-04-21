@@ -1,0 +1,69 @@
+
+
+
+<div class="inputgroup">
+
+  <label *ngIf="haslabel" role="number"  id="{{componentId}}"  [style.font-style]="fontstyle" [style.font-family]="fontfamily" [style.font-size]="fontsize">
+      {{fieldlabel}}
+      <ng-container *ngIf="(fieldlabel != '' && !allowblank && iconfeedback); else elseblock">
+        <span style="color: red">*</span>
+        <ng-template #elseBlock>
+          <span></span>
+        </ng-template>
+      </ng-container>
+  </label>
+
+  <input type="number" 
+
+
+        role="number"
+        tabindex="1"
+       
+        aria-describedby="numberDes"
+        attr.aria-labelledby="{{componentId}}"
+        [attr.aria-required]="!allowblank"
+        [attr.aria-invalid]="!isValid "
+        (keyup.home)="onKeyUpHome($event)"
+        (keyup.end)="onKeyUpEnd($event)"
+
+
+
+         class="input-control"
+         [ngClass]="model.touched ? allowblank ? '' : (isValid && model.touched) ? 'input-control-success' : 'input-control-error' :''"
+         [(ngModel)]="value"
+         (blur)="onBlurEvent()" 
+         (focus)="onFocusEvent($event)" 
+         (input)="onNumberInputEvent($event)" 
+         (change)="onChangeEvent($event)"
+         [name]="name" 
+         [pattern]="regEx"
+         [attr.placeholder]="placeholder" 
+         [attr.max]="maxvalue" 
+         [attr.min]="minvalue" 
+         [attr.disabled]="disabled ? true: null"
+         [required]="!allowblank" />
+
+
+  <ng-container *ngIf="iconfeedback">
+      <span class="input-control-feedback">
+          <span *ngIf="!isValid && model.touched"><em class="fa fa-times"></em></span>
+          <span *ngIf="isValid && model.touched"><em class="fa fa-check"></em></span>
+      </span>
+  </ng-container>
+
+  <input-help *ngIf="showToolTip && enablepopover"
+
+  id="numberDes"
+  role="tooltip"
+
+  [error-msg]="errormsg" 
+  [max-error-msg]="maxerrormsg"
+  [min-error-msg]="minerrormsg"
+  [min-value]="minvalue"
+  [max-value]="maxvalue"
+  [is-number]="true"
+  >
+  </input-help>
+  
+  <span class="inputfieldbar"></span>
+</div>

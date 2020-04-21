@@ -1,0 +1,34 @@
+table {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+    position: relative;
+    /* z-index: 1; */
+}
+
+.EventDetailsContent {
+    position: absolute;
+  z-index: 800 !important;
+  }
+    
+    .fpRightClass .amexio-floating-panel div {
+      /* bottom: 0px; */
+      right: 0px;
+      }
+
+      .leftPositionPanel {
+        display: block;
+        position: absolute;
+        left: 50px;
+        right: 0px;
+      }
+      
+      .rightPositionPanel{
+        display: block;
+        position: absolute;
+        left: 0px;
+        right: 50px;
+      }

@@ -1,0 +1,34 @@
+<div class="calendar-year">
+    <div class="calendar-year-box" *ngFor="let month of calendaryData">
+        <div class="calendar-year-month">
+            <div style="cursor: pointer;" (click)="monthClicked(month)">
+                <strong>{{month.title}}</strong>
+            </div>
+            <table aria-describedby="table1" role="none">
+                <thead>
+                    <tr>
+                        <td *ngFor="let header of headers" style="text-align: center;">
+                            {{header}}
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let week of month.data" class="calendar-week-timeslot">
+                        <td class="focuscls" attr.id="{{day.id}}" tabindex="1" role="button" [attr.aria-pressed]="isdaypressed" (keyup.arrowright)="navigateright(day)"
+                            (keyup.arrowleft)="navigateleft(day)" (keyup.arrowdown)="navigatedown(day)" (keyup.arrowup)="navigateup(day)"
+                            attr.aria-label="{{day.date | date : 'EEEE, MMMM d, y'}} " [ngClass]="{'calendar-inactive': (!day.isActivePeriod),                                         
+                                        'calendar-year-month-hasevent': (day.isActivePeriod && day.isEvent)}" (click)="eventClicked($event, day)"
+                            (keyup.enter)="eventClicked($event, day)" *ngFor="let day of week" style="text-align: center;">
+                            <div  [ngClass]="{'calendar-active-box calendar-year-month-today': (day.isActivePeriod && day.isActive)}" style="height:30px; width: 30px;"
+                                style="text-align: center; cursor: pointer;">
+                                {{day.date | date :'dd'}}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

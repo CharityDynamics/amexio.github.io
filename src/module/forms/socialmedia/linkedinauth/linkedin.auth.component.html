@@ -1,0 +1,14 @@
+<div class="social-button">
+
+    <ng-container *ngIf="!isCircle && styleType != 'square'" >
+            <amexio-button [bg-color]="'#0082ca'" [color]="'#fff'" [label]="label" [tooltip]="'Linkedin'" [icon]="'fa fa-linkedin'" (onClick)="onButtonClick()"></amexio-button>
+    </ng-container>
+
+    <ng-container *ngIf="styleType == 'square'">
+            <amexio-floating-button  [block]="'square'" [bg-color]="'#0082ca'" [color]="'#fff'" [relative]="true" [type]="'default'" [icon]="'fa fa-linkedin'" (onClick)="onButtonClick()"></amexio-floating-button>
+    </ng-container>
+
+    <ng-container *ngIf="styleType == 'circle'">
+            <amexio-floating-button [bg-color]="'#0082ca'" [color]="'#fff'" [relative]="true" [icon]="'fa fa-linkedin'" [type]="'default'" (onClick)="onButtonClick()"></amexio-floating-button>
+    </ng-container>
+</div>

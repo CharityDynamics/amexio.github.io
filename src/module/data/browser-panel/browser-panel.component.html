@@ -1,0 +1,82 @@
+
+<div *ngIf="show" #fullscreen
+    [ngClass]="[showBrowserWithWindow ? 'browserpanel-url-window' : 'browserpanel-url']">
+    <amexio-card-ce class="card-ce-window">
+        <div class="creative-header-div card-header-border browserpanel-header">
+            <div class="browserpanel-header-url">
+                <!-- Apple buttons -->
+                <span class="span-with-button">
+
+                    <ng-container *ngIf="showBrowserWithWindow">
+                        <div class="browser-button btn-red">
+                            <a class="closebutton"><span (click)="onCloseClick()">x</span></a>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="!showBrowserWithWindow">
+                        <div style="cursor: not-allowed" class="browser-button btn-red">
+                            <a class="closebutton"><span>x</span></a>
+                        </div>
+                    </ng-container>
+                </span>
+                <span class="span-with-button">
+                    <ng-container *ngIf="showBrowserWithWindow">
+                        <div class="browser-button btn-yellow" *ngIf="showBrowserWithWindow">
+                            <a class="minimizebutton"><span (click)="onMinimizeClick()">–</span></a>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="!showBrowserWithWindow">
+                        <div style="cursor: not-allowed" class="browser-button btn-yellow">
+                            <a class="minimizebutton"><span>–</span></a>
+                        </div>
+                    </ng-container>
+                </span>
+
+                <span class="span-with-button">
+                    <ng-container *ngIf="showBrowserWithWindow">
+                        <div class="browser-button btn-green ">
+                            <a class="zoombutton"><span (click)="maxScreenChange()">+</span></a>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="!showBrowserWithWindow">
+                        <div class="browser-button btn-green">
+                            <a class="zoombutton"><span (click)="maxScreenChange()">+</span></a>
+                        </div>
+                    </ng-container>
+                </span>
+                <!-- Reload icon display -->
+                <ng-container *ngIf="reloadBtn || urlFieldEditable">
+                    <span class="span-with-button">
+                        <em class="fa fa-repeat" aria-hidden="true" (click)="onReloadPage()"></em>
+                    </span>
+
+                </ng-container>
+                <!-- Lock icon display -->
+                <ng-container *ngIf="lockIconShow">
+                    <span class="span-with-button lock-button">
+                        <em class="fa fa-lock" aria-hidden="true"></em>
+                    </span>
+                </ng-container>
+                <!-- URL check if http or https -->
+
+                <ng-container *ngIf="urlFieldEditable">
+                    <span #newURL contenteditable="true" class="url-with-dots">
+                        {{url}}
+                    </span>
+                </ng-container>
+                <ng-container *ngIf="!urlFieldEditable">
+                    <span #newURL class="url-with-dots"> {{url}} </span>
+                </ng-container>
+
+            </div>
+        </div>
+
+        <!-- Site How here -->
+        <amexio-body-ce style="overflow: hidden !important;">
+            <iframe title="Browser Window" #loadSite class="browserpanel-iframe" aria-hidden="true" [src]="iframeurl">
+
+            </iframe>
+        </amexio-body-ce>
+    </amexio-card-ce>
+</div>

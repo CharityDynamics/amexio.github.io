@@ -1,0 +1,23 @@
+.btncolor {
+    background-color: $componentActiveBGColor;
+    color: $componentActiveFontColor;
+}
+.labcolor {
+    color: $labelFontColor;
+}
+.btncolor:hover {
+    background-color: $componentHoverBGColor;
+    color: $componentHoverFontColor;
+}
+
+.nonecls {
+    border-color: $labelFontColor !important;
+}
+
+.redcls {
+    border-color: red !important;
+}
+
+.greencls {
+    border-color:green !important;
+}

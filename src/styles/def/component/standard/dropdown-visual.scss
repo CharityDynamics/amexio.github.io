@@ -1,0 +1,76 @@
+
+.dropdown{
+  background-color: $componentBGColor;
+}
+
+.dropdown-list .list-items:hover{
+  color: $dropdownHoverColor;
+  background-color: $dropdownHoverBGColor;
+}
+
+.dropdown-list .list-items-active{
+  color: $dropdownActiveColor;
+  background-color: $dropdownActiveBGColor;
+}
+
+.drodown-caret-down{
+  color: $dropdownIconColor;
+}
+
+.list-items-selected{
+  background-color:$dropdownHoverBGColor;
+  color:$dropdownHoverColor;
+}
+
+.dropdown-list::-webkit-scrollbar-track
+{
+background-color: $dropdownScrollColor;
+}
+
+.dropdown-list::-webkit-scrollbar
+{
+//width: 6px;
+background-color: $dropdownScrollColor;
+}
+
+.dropdown-list::-webkit-scrollbar-thumb
+{
+background-color: $dropdownScrollThumbColor;
+}
+
+
+
+
+.dropdown-list .list-item-hover:hover {
+  color: var(--componentHoverFontColor) !important;
+  background-color: var(--componentHoverBGColor) !important;
+  }
+  
+  .dropdown-list .list-item-hover1:hover {
+  color: var(--componentHoverFontColor) !important;
+  background-color: var(--componentHoverBGColor) !important;
+  border-bottom: 2px solid black !important;
+  }
+  
+  .parentclass:hover {
+    color: var(--componentHoverFontColor) !important;
+    background-color: var(--componentHoverBGColor) !important;
+    border-bottom: 2px solid black !important;
+}
+
+   
+  .dropdowntreelabel:hover {
+    cursor: pointer;
+    color: var(--componentHoverFontColor) !important;
+    background-color: var(--componentHoverBGColor) !important;
+    border-bottom: 2px solid black !important;
+}
+
+
+  .dropdown-list .list-item-hover {
+  cursor: pointer;
+  }
+  
+  .dropdown-list .list-item-hover1 {
+  cursor: pointer;
+  }

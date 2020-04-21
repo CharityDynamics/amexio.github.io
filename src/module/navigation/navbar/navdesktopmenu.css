@@ -1,0 +1,17 @@
+.amexio-nav-desktop{
+    margin-top : -50px;
+}
+
+.amexio-nav-desktop > *{
+    cursor: pointer;
+}
+.scroll-class {
+    overflow-x:hidden;
+    padding: 10px;
+}
+
+ .amexio-nav-submenus {
+    padding:0px !important;
+} 
+
+

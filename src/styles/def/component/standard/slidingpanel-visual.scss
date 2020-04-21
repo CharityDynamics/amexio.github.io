@@ -1,0 +1,18 @@
+.parentpanel {
+    color: $panelItemFontColor;
+    background-color: $panelItemBGColor;
+}
+
+.parentpanel:hover {
+    color: $panelItemHoverFontColor;
+    background-color: $panelItemHoverBGColor;
+}
+.panelitemrow:hover {
+    color: $panelItemHoverFontColor;
+    background-color: $panelItemHoverBGColor;
+  }
+
+  .panelheader {
+    background-color: $panelHeaderBGColor;
+    color: $panelHeaderFontColor;
+  }

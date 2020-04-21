@@ -1,0 +1,25 @@
+.bubble{
+    background: $bubbleItemBGColor;
+}
+.speecharrowleft:after{
+    border-color: transparent $bubbleItemBGColor;
+}
+
+.speecharrowright:after {
+    border-color: transparent $bubbleItemBGColor;
+}
+
+.speecharrowbottomleft:after{
+    border-color:$bubbleItemBGColor transparent;
+}
+
+.speecharrowbottomright:after{
+    border-color:  $bubbleItemBGColor transparent;
+}
+.speecharrowtopleft:after{
+     border-color: $bubbleItemBGColor transparent;
+
+}
+.speecharrowtopright:after{
+     border-color: $bubbleItemBGColor transparent;
+}
