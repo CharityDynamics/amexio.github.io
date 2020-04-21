@@ -198,7 +198,7 @@ const styleProcessor = (stylePath, ext, styleFile, callback) => {
 // Cleaning Tasks
 /////////////////////////////////////////////////////////////////////////////
 gulp.task('clean:dist', () => {
-    return del(config.outputDir);
+    return del(config.outputDir+"*");
 });
 
 gulp.task('clean:build', () => {
