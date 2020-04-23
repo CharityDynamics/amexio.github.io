@@ -1,0 +1,4 @@
+[submodule "dist"]
+	path = dist
+	url = https://github.com/CharityDynamics/amexio-ng-extensions.git
+	branch = master
