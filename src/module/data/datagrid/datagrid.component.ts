@@ -541,6 +541,9 @@ export class AmexioDatagridComponent extends LifeCycleBaseComponent implements O
       this.columns = this.columndefintion;
     }
     this.fliterFlag = false;
+    if (this.sortColumn) {
+      this.setSortColumn(this.sortColumn, this.sortBy);
+    }
   }
 
   ngAfterContentInit() {
