@@ -512,9 +512,9 @@ export class AmexioDatagridComponent extends LifeCycleBaseComponent implements O
       this.previousData = JSON.parse(JSON.stringify(this.data));
     }
     this.componentLoaded = true;
-    this.componentId = 'gridcolumn' + window.crypto.getRandomValues(new Uint32Array(1))[0];
-
-    this.gridId = 'grid' + window.crypto.getRandomValues(new Uint32Array(1))[0];
+    const browserCrypto = window.crypto || (window['msCrypto'] as Crypto);
+    this.componentId = 'gridcolumn' + browserCrypto.getRandomValues(new Uint32Array(1))[0];
+    this.gridId = 'grid' + browserCrypto.getRandomValues(new Uint32Array(1))[0];
   }
 
   ngAfterViewInit(): void {

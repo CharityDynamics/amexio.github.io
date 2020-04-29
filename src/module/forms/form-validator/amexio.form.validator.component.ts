@@ -14,6 +14,7 @@ export class AmexioFormValidator {
     // }
 
     createCompId(inputType: any, name: any) {
-        return inputType + '_' + name + '_' + window.crypto.getRandomValues(new Uint32Array(1))[0];
+        const browserCrypto = window.crypto || (window['msCrypto'] as Crypto);
+        return inputType + '_' + name + '_' + browserCrypto.getRandomValues(new Uint32Array(1))[0];
     }
 }

@@ -106,7 +106,10 @@ export class AmexioCheckBoxComponent extends AmexioFormValidator implements Cont
     this.input.emit(this.value);
   }
   onClick() {
-    this.value = !this.value;
+    const browsertype = window.navigator.userAgent;
+    if ((browsertype.indexOf('MSIE') <= 0) && (browsertype.indexOf('Trident/') <= 0) && (browsertype.indexOf('Edge/') <= 0)) {
+      this.value = !this.value;
+    }
     this.isValid = this.value;
     this.isComponentValid.emit(this.value);
     this.onSelection.emit(this.value);
@@ -175,8 +178,9 @@ export class AmexioCheckBoxComponent extends AmexioFormValidator implements Cont
   getRandomString(): string {
     const possibleCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     let randomString = '';
+    const browserCrypto = window.crypto || (window['msCrypto'] as Crypto);
     for (let i = 0; i < 6; i++) {
-      randomString += possibleCharacters.charAt(window.crypto.getRandomValues(new Uint32Array(1))[0] * possibleCharacters.length);
+      randomString += possibleCharacters.charAt(browserCrypto.getRandomValues(new Uint32Array(1))[0] * possibleCharacters.length);
     }
     return randomString;
   }
