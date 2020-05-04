@@ -1198,11 +1198,11 @@ export class AmexioDatagridComponent extends LifeCycleBaseComponent implements O
       let x;
       let y;
       if (this.sortColumn.dataindex.includes('.')) {
-        x = this.sortInnerFunc(this.sortColumn.dataindex, a).toLowerCase();
-        y = this.sortInnerFunc(this.sortColumn.dataindex, b).toLowerCase();
+        x = [this.sortInnerFunc(this.sortColumn.dataindex, a).toLowerCase(), a.id];
+        y = [this.sortInnerFunc(this.sortColumn.dataindex, b).toLowerCase(), b.id];
       } else {
-        x = a[sortColDataIndex].toLowerCase();
-        y = b[sortColDataIndex].toLowerCase();
+        x = [a[sortColDataIndex].toLowerCase(), a.id];
+        y = [b[sortColDataIndex].toLowerCase(), b.id];
       }
       return this.noGrpBySortOrder(sortOrder, x, y);
     });
@@ -1265,18 +1265,26 @@ export class AmexioDatagridComponent extends LifeCycleBaseComponent implements O
 
   // Sort order if group by is false
   noGrpBySortOrder(sortOrder: any, x: any, y: any) {
-    if (sortOrder === 2) {
-      if (x < y) {
+    if (x[0] === y[0]) {
+      if (x[1] < y[1]) {
+        return -1;
+      }
+      if (x[1] > y[1]) {
         return 1;
       }
-      if (x > y) {
+    }
+    if (sortOrder === 2) {
+      if (x[0] < y[0]) {
+        return 1;
+      }
+      if (x[0] > y[0]) {
         return -1;
       }
     } else {
-      if (x < y) {
+      if (x[0] < y[0]) {
         return -1;
       }
-      if (x > y) {
+      if (x[0] > y[0]) {
         return 1;
       }
     }
