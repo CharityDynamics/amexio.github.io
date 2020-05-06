@@ -241,6 +241,39 @@ description : sets background color
   constructor(private loader: ChartLoaderService) {
     this.width = '100%';
   }
+  createChartColumns(count: any) {
+    const columnValues = [];
+    for (let i = 0; i < count; i++) {
+      columnValues.push(i);
+      if (i > 0) {
+        columnValues.push(
+          { calc: (dt: any, row: any) => {
+            const curVal = dt.getFormattedValue(row, i);
+            if (curVal !== 0 && curVal !== '$0.00' && curVal !== '0.0') {
+            return curVal;
+            }
+            return null;
+          },
+          sourceColumn: i,
+          type: 'string',
+          role: 'annotation' },
+        );
+      }
+    }
+    return columnValues;
+  }
+
+  isCurrency(item: any) {
+    let isCurrency = false;
+    item.forEach((object: any) => {
+      if (typeof(object) === 'object') {
+        if (object.hasOwnProperty('f') && object.f.includes('$')) {
+          isCurrency = true;
+        }
+      }
+    });
+    return isCurrency;
+  }
 
   drawChart() {
     if (this.showChart) {
@@ -252,11 +285,19 @@ description : sets background color
         backgroundcolor: this.backgroundcolor,
         legend: this.chartLengendComponent ? this.chartLegendStyle() : 'none',
         chartArea: this.chartAreaComponent ? this.chartBackGroundColor() : null,
+        colors: ['#F08801', '#3ABCD6', '#48494B' ],
       };
+      if (this.isCurrency(this._data[1])) {
+        this.options.vAxis = {format: 'currency'};
+      }
+      const view = new google.visualization.DataView(this.columnData);
+      const countOfColumns = this._data[0].length;
+      view.setColumns(this.createChartColumns(countOfColumns));
+
       if (this.columnData) {
         this.chart = new google.visualization.ColumnChart(this.columnchart.nativeElement);
         this.hasLoaded = true;
-        this.chart.draw(this.columnData, this.options);
+        this.chart.draw(view, this.options);
         google.visualization.events.addListener(this.chart, 'click', this.onClick);
       }
     }
@@ -337,9 +378,12 @@ description : sets background color
 
   ngOnInit(): void {
     this.hasLoaded = false;
-    this.loader.loadCharts('ColumnChart').subscribe((value) => console.log(), (errror) => console.error(errror), () => {
-      this.drawChart();
-    });
+    setTimeout(() => {
+      this.loader.loadCharts('ColumnChart').subscribe((value) => console.log(), (errror) => console.error(errror), () => {
+        this.drawChart();
+      });
+    },
+    500);
   }
 
   onResize(event: any) {

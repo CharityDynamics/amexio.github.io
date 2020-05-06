@@ -230,6 +230,17 @@ description : sets background-color of chart
   constructor(private loader: ChartLoaderService) {
     this.width = '100%';
   }
+  isCurrency(item: any) {
+    let isCurrency = false;
+    item.forEach((object: any) => {
+      if (typeof(object) === 'object') {
+        if (object.hasOwnProperty('f') && object.f.includes('$')) {
+          isCurrency = true;
+        }
+      }
+    });
+    return isCurrency;
+  }
 
   drawChart() {
     if (this.showChart) {
@@ -240,7 +251,11 @@ description : sets background-color of chart
         backgroundcolor: this.backgroundcolor,
         legend: this.chartLengendComponent ? this.chartLegendStyle() : 'none',
         chartArea: this.chartAreaComponent ? this.chartBackgroundStyle() : null,
+        colors: ['#F08801', '#3ABCD6', '#48494B' ],
       };
+      if (this.isCurrency(this._data[1])) {
+        this.options.vAxis = {format: 'currency'};
+      }
       if (this.lineData) {
         this.chart = new google.visualization.LineChart(this.linechart.nativeElement);
         this.hasLoaded = true;
