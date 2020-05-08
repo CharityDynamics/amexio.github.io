@@ -251,7 +251,7 @@ description : sets background-color of chart
         backgroundcolor: this.backgroundcolor,
         legend: this.chartLengendComponent ? this.chartLegendStyle() : 'none',
         chartArea: this.chartAreaComponent ? this.chartBackgroundStyle() : null,
-        colors: ['#F08801', '#3ABCD6', '#48494B' ],
+        colors: ['#48494B', '#3ABCD6', '#F08801'],
       };
       if (this.isCurrency(this._data[1])) {
         this.options.vAxis = {format: 'currency'};
@@ -325,25 +325,37 @@ createTable(array: any[]): any {
     const dupArray = array.slice();
     const data = new google.visualization.DataTable();
     const labelObject = dupArray[0];
+    let isDate = false;
     // remove first object of array
     dupArray.shift();
 
     labelObject.forEach((datatypeObject: any) => {
       data.addColumn(datatypeObject.datatype, datatypeObject.label);
+      if (datatypeObject.datatype === 'date') {
+        isDate = true;
+      }
     });
     const finalArray: any[] = [];
     dupArray.forEach((rowObject: any) => {
+      if (isDate) {
+        rowObject[0] = new Date(rowObject[0]);
+      }
       finalArray.push(rowObject);
     });
     data.addRows(finalArray);
+    const monthYearFormatter = new google.visualization.DateFormat({ pattern: 'MMM yyyy' });
+    monthYearFormatter.format(data, 0);
     return data;
   }
 
   ngOnInit(): void {
     this.hasLoaded = false;
-    this.loader.loadCharts('LineChart').subscribe((value) => console.log(), (error) => console.error(error), () => {
-      this.drawChart();
-    });
+    setTimeout(() => {
+      this.loader.loadCharts('LineChart').subscribe((value) => console.log(), (error) => console.error(error), () => {
+        this.drawChart();
+      });
+    },
+    500);
   }
 
   onResize(event: any) {

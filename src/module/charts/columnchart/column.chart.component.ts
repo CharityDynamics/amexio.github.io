@@ -244,12 +244,27 @@ description : sets background color
   createChartColumns(count: any) {
     const columnValues = [];
     for (let i = 0; i < count; i++) {
-      columnValues.push(i);
-      if (i > 0) {
+      if (i === 0) {
         columnValues.push(
           { calc: (dt: any, row: any) => {
             const curVal = dt.getFormattedValue(row, i);
-            if (curVal !== 0 && curVal !== '$0.00' && curVal !== '0.0') {
+            const splitted = curVal.split('-', 2);
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            let label = '';
+            const indexValue = parseInt(splitted[0], 10) + 1;
+            label = months[indexValue] + ' ' + splitted[1];
+            return label;
+          },
+          sourceColumn: i,
+          type: 'string'},
+        );
+      }
+      if (i > 0) {
+        columnValues.push(i);
+        columnValues.push(
+          { calc: (dt: any, row: any) => {
+            const curVal = dt.getFormattedValue(row, i);
+            if (curVal !== 0 && curVal !== '$0.00' && curVal !== '0.0' && curVal !== '0') {
             return curVal;
             }
             return null;
@@ -285,7 +300,7 @@ description : sets background color
         backgroundcolor: this.backgroundcolor,
         legend: this.chartLengendComponent ? this.chartLegendStyle() : 'none',
         chartArea: this.chartAreaComponent ? this.chartBackGroundColor() : null,
-        colors: ['#F08801', '#3ABCD6', '#48494B' ],
+        colors: ['#48494B', '#3ABCD6', '#F08801'],
       };
       if (this.isCurrency(this._data[1])) {
         this.options.vAxis = {format: 'currency'};
