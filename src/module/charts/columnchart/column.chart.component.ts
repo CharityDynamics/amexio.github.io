@@ -208,6 +208,15 @@ description : If set to true, stacks the elements for all series at each domain 
 
  /*
 Properties
+name : showAnnotations
+datatype : boolean
+default : false
+description : If set to true, annotations that are greater than 0 will be shown
+*/
+@Input() showAnnotations = false;
+
+ /*
+Properties
 name : background-color
 datatype : string
 version : 4.0 onwards
@@ -251,7 +260,7 @@ description : sets background color
             const splitted = curVal.split('-', 2);
             const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             let label = '';
-            const indexValue = parseInt(splitted[0], 10) + 1;
+            const indexValue = parseInt(splitted[0], 10) - 1;
             label = months[indexValue] + ' ' + splitted[1];
             return label;
           },
@@ -261,18 +270,20 @@ description : sets background color
       }
       if (i > 0) {
         columnValues.push(i);
-        columnValues.push(
-          { calc: (dt: any, row: any) => {
-            const curVal = dt.getFormattedValue(row, i);
-            if (curVal !== 0 && curVal !== '$0.00' && curVal !== '0.0' && curVal !== '0') {
-            return curVal;
-            }
-            return null;
-          },
-          sourceColumn: i,
-          type: 'string',
-          role: 'annotation' },
-        );
+        if (this.showAnnotations) {
+          columnValues.push(
+            { calc: (dt: any, row: any) => {
+              const curVal = dt.getFormattedValue(row, i);
+              if (curVal !== 0 && curVal !== '$0.00' && curVal !== '0.0' && curVal !== '0') {
+              return curVal;
+              }
+              return null;
+            },
+            sourceColumn: i,
+            type: 'string',
+            role: 'annotation' },
+          );
+        }
       }
     }
     return columnValues;
