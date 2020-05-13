@@ -409,7 +409,7 @@ description : sets background color
         this.drawChart();
       });
     },
-    500);
+    1300);
   }
 
   onResize(event: any) {
