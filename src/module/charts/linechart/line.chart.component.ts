@@ -355,7 +355,7 @@ createTable(array: any[]): any {
         this.drawChart();
       });
     },
-    1300);
+    2300);
   }
 
   onResize(event: any) {
