@@ -338,9 +338,11 @@ createTable(array: any[]): any {
     const finalArray: any[] = [];
     dupArray.forEach((rowObject: any) => {
       if (isDate) {
-        const splitVal = rowObject[0].split('-');
-        const stringDate = splitVal[2] + '-' + splitVal[0] + '-02';
-        rowObject[0] = new Date(stringDate);
+        if (typeof rowObject[0] === 'string') {
+          const splitVal = rowObject[0].split('-');
+          const stringDate = splitVal[2] + '-' + splitVal[0] + '-02';
+          rowObject[0] = new Date(stringDate);
+        }
       }
       finalArray.push(rowObject);
     });
