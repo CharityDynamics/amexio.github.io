@@ -46,7 +46,7 @@
           <ng-container *ngFor="let cols of columns">
             <ng-container *ngIf="!cols.hidden">
               <div class="datatable-col col-group" [style.width.%]="cols.width">
-                <data-grid-filter (onFilterClick)="getFilterClick()" [column]="cols" (filterObject)="getFilteredData($event)">
+                <data-grid-filter (onFilterClick)="getFilterClick()" (onSearchChange)="getSearchChange($event)" [column]="cols" (filterObject)="getFilteredData($event)" [initialSearch]="initialsearch">
                 </data-grid-filter>
               </div>
             </ng-container>

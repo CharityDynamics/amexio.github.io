@@ -39,12 +39,15 @@ For internal use
 */
   @Input() column: any;
 
+  @Input() initialSearch: any;
   /*
   for internal use
   */
   @Output() filterObject: any = new EventEmitter<any>();
 
   @Output() onFilterClick: any = new EventEmitter<any>();
+
+  @Output() onSearchChange: any = new EventEmitter<any>();
 
   filterValue: any;
 
@@ -109,6 +112,13 @@ For internal use
 
   ngOnInit() {
     this.sortFilterData();
+
+    if (this.initialSearch) {
+      if (this.initialSearch['dataindex'] === this.column['dataindex']) {
+        this.filterValue = this.initialSearch['value'];
+        this.keyUpSearch(this.column);
+      }
+    }
   }
 
   selectedOption(col: any, opt: any) {
@@ -131,6 +141,7 @@ For internal use
   }
 
   keyUpSearch(col: any) {
+    this.onSearchChange.emit({ index: col['dataindex'], value: this.filterValue});
     this.showToolTip = false;
     if (this.filterValue == null || this.filterValue === '') {
       this.removeFilter(col);

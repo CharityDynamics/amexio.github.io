@@ -101,6 +101,8 @@ export class AmexioDatagridComponent extends LifeCycleBaseComponent implements O
    */
   @Input('enable-checkbox') enablecheckbox: boolean;
 
+  @Input('initial-search') initialsearch: any;
+
   /*
    Properties
    name : data
@@ -130,7 +132,7 @@ export class AmexioDatagridComponent extends LifeCycleBaseComponent implements O
    description : It will gives you row clicked data.
    */
   @Output() rowSelect: any = new EventEmitter<any>();
-
+  @Output() onSearchClick: any = new EventEmitter<any>();
   /*
    Events
    name : selectedRowData
@@ -1485,6 +1487,11 @@ export class AmexioDatagridComponent extends LifeCycleBaseComponent implements O
       com.showToolTip = false;
     });
   }
+
+  getSearchChange(event: any) {
+    this.onSearchClick.emit({ index: event['index'], value: event['value']});
+  }
+
   // TAB NAVIGATION
   // LEFT ARROW
   arrowLeft(ref: any) {
