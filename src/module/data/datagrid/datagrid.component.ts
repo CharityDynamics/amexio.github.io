@@ -1060,6 +1060,8 @@ export class AmexioDatagridComponent extends LifeCycleBaseComponent implements O
       return key.startsWith(value);
     } else if (filter === '2') {
       return key.endsWith(value);
+    } else if (filter === '==') {
+      return key === value;
     } else {
       return key !== value;
     }
