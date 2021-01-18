@@ -1205,8 +1205,10 @@ export class AmexioDatagridComponent extends LifeCycleBaseComponent implements O
         x = [this.sortInnerFunc(this.sortColumn.dataindex, a).toLowerCase(), a.id];
         y = [this.sortInnerFunc(this.sortColumn.dataindex, b).toLowerCase(), b.id];
       } else {
-        x = [a[sortColDataIndex].toLowerCase(), a.id];
-        y = [b[sortColDataIndex].toLowerCase(), b.id];
+        const v = a[sortColDataIndex] ? a[sortColDataIndex] : '';
+        const w = b[sortColDataIndex] ? b[sortColDataIndex] : '';
+        x = [v.toLowerCase(), a.id];
+        y = [w.toLowerCase(), b.id];
       }
       return this.noGrpBySortOrder(sortOrder, x, y);
     });
