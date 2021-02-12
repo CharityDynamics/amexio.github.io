@@ -251,7 +251,7 @@ description : sets background-color of chart
         backgroundcolor: this.backgroundcolor,
         legend: this.chartLengendComponent ? this.chartLegendStyle() : 'none',
         chartArea: this.chartAreaComponent ? this.chartBackgroundStyle() : null,
-        colors: ['#48494B', '#3ABCD6', '#F08801'],
+        colors: ['#48494B', '#3ABCD6', '#F08801', '#6AB445', '#9932CC', '#ff748c'],
       };
       if (this.isCurrency(this._data[1])) {
         this.options.vAxis = {format: 'currency'};
