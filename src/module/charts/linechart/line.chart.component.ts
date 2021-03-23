@@ -250,6 +250,7 @@ description : sets background-color of chart
         titleTextStyle: this.chartTitleComponent ? this.chartTitleTextStyle() : null,
         backgroundcolor: this.backgroundcolor,
         legend: this.chartLengendComponent ? this.chartLegendStyle() : 'none',
+        tooltip: {isHtml: true},
         chartArea: this.chartAreaComponent ? this.chartBackgroundStyle() : null,
         colors: ['#48494B', '#3ABCD6', '#F08801', '#6AB445', '#9932CC', '#ff748c'],
       };
@@ -330,9 +331,13 @@ createTable(array: any[]): any {
     dupArray.shift();
 
     labelObject.forEach((datatypeObject: any) => {
-      data.addColumn(datatypeObject.datatype, datatypeObject.label);
-      if (datatypeObject.datatype === 'date') {
-        isDate = true;
+      if (datatypeObject.role === 'tooltip') {
+        data.addColumn({type: 'string', role: 'tooltip', p: {html: true}});
+      } else {
+        data.addColumn(datatypeObject.datatype, datatypeObject.label);
+        if (datatypeObject.datatype === 'date') {
+          isDate = true;
+        }
       }
     });
     const finalArray: any[] = [];
