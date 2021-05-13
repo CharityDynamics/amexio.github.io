@@ -3,7 +3,7 @@
     <label *ngIf="haslabel" role="input" id="{{componentId}}"  for="{{componentId}}" [style.font-style]="fontstyle" [style.font-family]="fontfamily" [style.font-size]="fontsize">
       {{fieldlabel}}
       <ng-container *ngIf="(fieldlabel != '' && !allowblank && iconfeedback); else elseblock">
-        <span style="color: red">*</span>
+        <span style="color: blue">*</span>
         <ng-template #elseBlock>
           <span></span>
         </ng-template>
@@ -11,7 +11,7 @@
       
   </label>
     <input type="text" 
-
+        #model="ngModel"
         role="text" 
         tabindex="1"
         id="{{componentId}}" 
